@@ -45,6 +45,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Delete Old Release
     needs: build
+    permissions:
+        contents: write
+        actions: read
     steps:
       - uses: actions/checkout@v4
 
