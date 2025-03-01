@@ -27,7 +27,7 @@ Chat with AI, adjust settings, and monitor system usage.
 ## Getting Started
 
 1.  **Select a Model:** Choose a model from the dropdown.
-2.  **Chat:** Type your question/instruction & click "Send".
+2.  **Chat:** Type your prompt & click "Send".
 4. **Settings:** Use the gear icon to change temperature and history.
 5. **Help:** Use the help icon to start the step-by-step tour, download Ollama & get instructions to properly install models
 
