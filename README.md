@@ -41,7 +41,7 @@ Chat with AI, adjust settings, and monitor system usage.
     *   `eel`
     *   `requests`
     *   `psutil`
-    *   `GPUtil`
+    *   `nvidia-ml-py`
 
 ## Contributing
 
