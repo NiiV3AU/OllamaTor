@@ -13,10 +13,10 @@ jobs:
       full_sha: ${{ steps.var.outputs.full_sha }}
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python 3.12
+    - name: Set up Python 3.13.1
       uses: actions/setup-python@v5
       with:
-        python-version: "3.12"
+        python-version: "3.13.1"
 
     - name: Install dependencies
       run: |
@@ -33,7 +33,7 @@ jobs:
 
     - name: Build Executable
       run: |
-        pyinstaller "main.pyw" --noconfirm --onefile --windowed --icon "./src/img/favicon.ico" --splash "./src/img/OllamaTooor.png" --add-data "./src/;src/" --version-file "./version.txt"
+        pyinstaller "./main.pyw" --noconfirm --onefile --windowed --icon "./src/img/favicon.ico" --splash "./src/img/OllamaTooor.png" --add-data "./src/;src/" --version-file "./version.txt"
 
     - name: Generate Build Info
       id: var
