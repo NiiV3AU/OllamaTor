@@ -33,7 +33,7 @@ jobs:
 
     - name: Build Executable
       run: |
-        pyinstaller "./main.pyw" --noconfirm --onefile --windowed --icon "./src/img/favicon.ico" --splash "./src/img/OllamaTooor.png" --add-data "./src/;src/" --version-file "./version.txt"
+        pyinstaller "./main.pyw" --noconfirm --onefile --windowed --icon "./src/img/favicon.ico" --splash "./src/img/OllamaTor.png" --add-data "./src/;src/" --version-file "./version.txt"
 
     - name: Generate Build Info
       id: var
