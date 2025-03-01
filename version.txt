@@ -30,7 +30,7 @@ StringFileInfo(
   StringTable(
     u'040904B0',
     [StringStruct(u'CompanyName', u'OllamaTor | github.com/NiiV3AU/OllamaTor'),
-    StringStruct(u'FileDescription', u'YimMenuUpdater'),
+    StringStruct(u'FileDescription', u'Your local AI-Chat'),
     StringStruct(u'FileVersion', u'0.0.1'),
     StringStruct(u'InternalName', u'OllamaTor'),
     StringStruct(u'LegalCopyright', u'github.com/NiiV3AU/OllamaTor - 2025'),
