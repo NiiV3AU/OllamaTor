@@ -1,0 +1,4 @@
+eel
+requests
+psutil
+nvidia-ml-py
