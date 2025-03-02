@@ -211,10 +211,9 @@ def generate_response(model, prompt, temperature, historyLength):
 @eel.expose
 def download_ollama():
     try:
-        temp_dir = "./temp"
-        if not os.path.exists(temp_dir):
-            os.makedirs(temp_dir)
-        filepath = os.path.join(temp_dir, "OllamaSetup.exe")
+        if not os.path.exists(MAIN_DIR):
+            os.makedirs(MAIN_DIR)
+        filepath = os.path.join(MAIN_DIR, "OllamaSetup.exe")
         if not os.path.isfile(filepath):
             logging.info("OllamaSetup.exe not installed. Starting download...")
             try:
@@ -226,6 +225,7 @@ def download_ollama():
                     r.raise_for_status()
                     total_size = int(r.headers.get("content-length", 0))
                     downloaded = 0
+                    last_logged_progress = 0
                     with open(filepath, "wb") as f:
                         for chunk in r.iter_content(chunk_size=8192):
                             if chunk:
@@ -233,7 +233,15 @@ def download_ollama():
                                 downloaded += len(chunk)
                                 if total_size > 0:
                                     progress = downloaded / total_size
-                                    logging.info(f"Downloading... {progress:.2%}")
+                                    if (
+                                        progress - last_logged_progress >= 0.1
+                                    ):  # Logge alle 10%
+                                        logging.info(f"Downloading... {progress:.2%}")
+                                        last_logged_progress = progress
+                    if (
+                        total_size > 0 and last_logged_progress < 1
+                    ):  # Logge 100% am ende falls nicht schon geschehen.
+                        logging.info(f"Downloading... 100.00%")
             except requests.exceptions.RequestException as e:
                 logging.error(f"Network error: {e}")
                 return
@@ -243,6 +251,7 @@ def download_ollama():
             logging.info("Download complete.")
         else:
             logging.info("OllamaSetup.exe is already installed, starting Setup...")
+        logging.info("Starting OllamaSetup.exe...")
         eel.start_setup()
         os.startfile(filepath)
 
