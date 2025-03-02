@@ -19,6 +19,11 @@ Chat with AI, adjust settings, and monitor system usage.
 *   **Customizable:** Adjust temperature and chat history length.
 *   **Resource Monitoring:** Real-time CPU, RAM, and GPU (load + memory) usage monitor. + AI performance "TPM" (tokens-per-minute)
 
+**TO-DO:**
+* Stop Button to stop generating a response
+* fixing the math rendering (KaTeX)
+* Customizable Copilots (inital prompt for the AI to get a better understanding on what it's working on)
+
 ## Installation
 
 |[Download Ollama.exe](https://github.com/NiiV3AU/OllamaTor/releases/latest)|
