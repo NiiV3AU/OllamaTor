@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="/css/introjs.min.css">
   <script src="/js/intro.min.js"></script>
   <link rel="stylesheet" href="/css/style.css">
-  <title>OllamaTor - local AI-Chat</title>
+  <title>OllamaTor - Your local AI-Chat</title>
   <link rel="icon" href="/img/OllamaTooor.png" type="image/png">
 </head>
 <body>
@@ -121,11 +121,12 @@
     eel.expose(start_download)
     function start_download() {
       eel.download_ollama()
+      document.getElementById("downloadButton").innerText = "Downloading OllamaSetup.exe...";
     };
 
     eel.expose(start_setup)
     function start_setup() {
-      document.getElementById("downloadButton").innerText = "Start OllamaSetup.exe";
+      document.getElementById("downloadButton").innerText = "If OllamaSetup.exe didn't automatically start, click to start manually";
     }
     document.getElementById("modelsButton").addEventListener("click", function() {
         open_link("https://ollama.com/models");
