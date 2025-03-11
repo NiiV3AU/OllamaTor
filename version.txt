@@ -6,9 +6,9 @@ VSVersionInfo(
   ffi=FixedFileInfo(
 # filevers and prodvers should be always a tuple with four items: (1, 2, 3, 4)
 # Set not needed items to zero 0.
-filevers=(0, 0, 1, 0),
-prodvers=(0, 0, 1, 0),
-# Contains a bitmask that specifies the valid bits 'flags'r
+filevers=(0, 0, 3, 0),
+prodvers=(0, 0, 3, 0),
+# Contains a bit3ask that specifies the valid bits 'flags'r
 mask=0x3f,
 # Contains a bitmask that specifies the Boolean attributes of the file.
 flags=0x0,
@@ -31,12 +31,12 @@ StringFileInfo(
     u'040904B0',
     [StringStruct(u'CompanyName', u'OllamaTor | github.com/NiiV3AU/OllamaTor'),
     StringStruct(u'FileDescription', u'Your local AI-Chat'),
-    StringStruct(u'FileVersion', u'0.0.1'),
+    StringStruct(u'FileVersion', u'0.0.3'),
     StringStruct(u'InternalName', u'OllamaTor'),
     StringStruct(u'LegalCopyright', u'github.com/NiiV3AU/OllamaTor - 2025'),
     StringStruct(u'OriginalFilename', u'OllamaTor.exe'),
     StringStruct(u'ProductName', u'OllamaTor'),
-    StringStruct(u'ProductVersion', u'0.0.1')])
+    StringStruct(u'ProductVersion', u'0.0.3')])
   ]), 
 VarFileInfo([VarStruct(u'Translation', [1033, 1200])])
   ]
