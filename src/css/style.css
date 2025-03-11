@@ -8,7 +8,17 @@
   --user-bg: #3b82f6;
   --bot-bg: var(--bg-light);
   --border: #334155;
-  --error: #e05263;
+  --red: #e05263;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-Variable.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono-Variable.ttf') format('truetype');
 }
 
 body {
@@ -137,6 +147,31 @@ h1 {
 #refreshButton:hover {
   background: var(--bg-light);
   transform: translateY(-1px);
+  animation: inset-glow-refresh 0.6s ease-in forwards;
+}
+
+@keyframes inset-glow-refresh {
+  0% {
+    box-shadow: inset var(--bg) 0px 0px 0px 0px, var(--bg) 0px 0px 0px 0px;
+  }
+
+  25% {
+    box-shadow: inset rgba(248, 250, 252, 0.5)0px 0px 6px 0px,
+      rgba(248, 250, 252, 0.5) 0px 0px 8px 0px;
+  }
+
+  50% {
+    box-shadow: inset rgba(248, 250, 252, 0.5)0px 0px 12px 0px, rgba(248, 250, 252, 0.5) 0px 0px 0px 0px;
+    ;
+  }
+
+  75% {
+    box-shadow: inset rgba(248, 250, 252, 0.5)0px 0px 6px 0px, rgba(248, 250, 252, 0.5) 0px 0px 8px 0px;
+  }
+
+  100% {
+    box-shadow: inset rgba(248, 250, 252, 0.5)0px 0px 12px 0px, rgba(248, 250, 252, 0.5) 0px 0px 6px 0px;
+  }
 }
 
 /* Styles für das Icon */
@@ -173,8 +208,23 @@ h1 {
   align-self: center;
   align-items: center;
   align-content: center;
-  height: 20px;
-  width: 20px;
+  height: 24px;
+  width: 24px;
+  transition: all 0.2s ease;
+}
+
+@keyframes breathe {
+  0% {
+    transform: rotate(+3deg);
+  }
+
+  50% {
+    transform: rotate(-3deg);
+  }
+
+  100% {
+    transform: rotate(+3deg);
+  }
 }
 
 /* Settings Button */
@@ -192,6 +242,7 @@ h1 {
 #settingsButton:hover {
   background: var(--primary-hover);
   transform: translateY(-1px);
+  animation: inset-glow 0.6s ease-in forwards;
 }
 
 /* Styles für das Icon */
@@ -223,6 +274,7 @@ h1 {
 #helpButton:hover {
   background: var(--primary-hover);
   transform: translateY(-1px);
+  animation: inset-glow 0.6s ease-in forwards;
 }
 
 /* Styles für das Icon */
@@ -274,6 +326,7 @@ h1 {
 #downloadButton:hover {
   background: var(--primary-hover);
   transform: translateY(-1px);
+  animation: inset-glow 0.6s ease-in forwards;
 }
 
 /* Styles für das Icon */
@@ -310,6 +363,7 @@ h1 {
 #modelsButton:hover {
   background: var(--primary-hover);
   transform: translateY(-1px);
+  animation: inset-glow 0.6s ease-in forwards;
 }
 
 /* Styles für das Icon */
@@ -346,6 +400,7 @@ h1 {
 #tourButton:hover {
   background: var(--primary-hover);
   transform: translateY(-1px);
+  animation: inset-glow 0.6s ease-in forwards;
 }
 
 /* Styles für das Icon */
@@ -396,6 +451,7 @@ h1 {
 #supportButton:hover {
   background: var(--primary-hover);
   transform: translateY(-1px);
+  animation: inset-glow 0.6s ease-in forwards;
 }
 
 /* Styles für das Icon */
@@ -517,7 +573,7 @@ h1 {
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
-  transform: translateY(0);
+  transform: translateY(+2px);
   scale: 1;
   transition: all 0.2s ease;
 }
@@ -764,7 +820,7 @@ input[type="range"]:hover::-webkit-slider-thumb {
   width: calc(100% - 2rem);
   height: 250px;
   border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2), inset 0 0 12px 0 var(--primary-hover);
   overflow-y: auto;
 }
 
@@ -773,21 +829,79 @@ input[type="range"]:hover::-webkit-slider-thumb {
   background: var(--primary);
   color: var(--text);
   border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
+  padding: 6px 12px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: var(--bg-light) 0px 0px 0px 0px;
   align-items: center;
   align-self: center;
   text-align: center;
-  width: auto;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  position: relative;
+}
+
+.send-icon {
+  font-size: 20px;
+  font-family: "JetBrains Mono", monospace;
+  display: inline-block;
+  transition: all 0.2s ease;
+  scale: 1;
 }
 
 .sendButton:hover {
   background: var(--primary-hover);
   transform: translateY(-1px);
   box-shadow: var(--bg-light) 0px 0px 10px 0px;
+  animation: inset-glow 0.6s ease-in forwards;
+}
+
+@keyframes inset-glow {
+  0% {
+    box-shadow: inset var(--primary-hover) 0px 0px 0px 0px, var(--primary-hover) 0px 0px 0px 0px;
+  }
+
+  25% {
+    box-shadow: inset rgba(248, 250, 252, 0.5)0px 0px 6px 0px,
+      var(--primary-hover) 0px 0px 8px 0px;
+  }
+
+  50% {
+    box-shadow: inset rgba(248, 250, 252, 0.5)0px 0px 12px 0px, var(--primary-hover) 0px 0px 0px 0px;
+    ;
+  }
+
+  75% {
+    box-shadow: inset rgba(248, 250, 252, 0.5)0px 0px 6px 0px, var(--primary-hover) 0px 0px 8px 0px;
+  }
+
+  100% {
+    box-shadow: inset rgba(248, 250, 252, 0.5)0px 0px 12px 0px, var(--primary-hover) 0px 0px 6px 0px;
+  }
+}
+
+.sendButton:hover .send-icon {
+  animation: send-animation 0.6s ease-in-out infinite;
+}
+
+@keyframes send-animation {
+  0% {
+    transform: translateX(0px);
+  }
+
+  33% {
+    transform: translateX(-1px);
+  }
+
+  66% {
+    transform: translateX(+1px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
 }
 
 /* KaTeX / Mathe */
@@ -834,6 +948,7 @@ input[type="range"]:hover::-webkit-slider-thumb {
   background: var(--primary-hover);
   transform: translateY(-1px);
   box-shadow: var(--bg-light) 0px 0px 10px 0px;
+  animation: inset-glow 0.6s ease-in forwards;
 }
 
 pre {
@@ -989,6 +1104,7 @@ code {
   outline: none;
   box-shadow: none;
   transition: all 0.2s ease;
+  animation: inset-glow 0.6s ease-in forwards;
 }
 
 .introjs-button:disabled {
@@ -1005,11 +1121,13 @@ code {
   box-shadow: none;
   right: 8px;
   transition: all 0.2s ease;
+  scale: 1;
 }
 
 .introjs-skipbutton:hover {
   color: var(--primary);
   box-shadow: none;
+  scale: 1.5;
   transition: all 0.2s ease;
 }
 
@@ -1215,21 +1333,120 @@ code {
 @keyframes red-border {
   0% {
     border-color: var(--border);
+    box-shadow: inset 0 0 0px 0 var(--border);
   }
 
   25% {
-    border-color: var(--error);
+    border-color: var(--red);
+    box-shadow: inset 0 0 12px 0 var(--red);
   }
 
   50% {
     border-color: var(--border);
+    box-shadow: inset 0 0 0px 0 var(--border);
   }
 
   75% {
-    border-color: var(--error);
+    border-color: var(--red);
+    box-shadow: inset 0 0 12px 0 var(--red);
   }
 
   100% {
     border-color: var(--border);
+    box-shadow: inset 0 0 0px 0 var(--border);
   }
+}
+
+/* General Button Styles */
+.button-container {
+  display: flex;
+  /* Use flexbox for layout */
+  gap: 1rem;
+  width: max-content;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  margin-top: 0.8rem;
+  /* Space between buttons */
+}
+
+.stopButton {
+  background: var(--border);
+  color: var(--text);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--bg-light) 0px 0px 0px 0px;
+  align-items: center;
+  align-self: center;
+  text-align: center;
+  display: inline-flex;
+  position: relative;
+  width: 48px;
+  height: 48px;
+}
+
+@keyframes inset-glow-red {
+  0% {
+    box-shadow: inset var(--red) 0px 0px 0px 0px, var(--red) 0px 0px 0px 0px;
+  }
+
+  25% {
+    box-shadow: inset rgba(248, 250, 252, 0.5)0px 0px 6px 0px,
+      var(--red) 0px 0px 8px 0px;
+  }
+
+  50% {
+    box-shadow: inset rgba(248, 250, 252, 0.5)0px 0px 12px 0px, var(--red) 0px 0px 0px 0px;
+    ;
+  }
+
+  75% {
+    box-shadow: inset rgba(248, 250, 252, 0.5)0px 0px 6px 0px, var(--red) 0px 0px 8px 0px;
+  }
+
+  100% {
+    box-shadow: inset rgba(248, 250, 252, 0.5)0px 0px 12px 0px, var(--red) 0px 0px 6px 0px;
+  }
+}
+
+.stop-icon {
+  font-size: 20px;
+  font-family: "JetBrains Mono", monospace;
+  display: inline-block;
+  transition: all 0.2s ease;
+  scale: 1;
+}
+
+.stopButton:hover {
+  background: var(--red);
+  transform: translateY(-1px);
+  box-shadow: var(--bg-light) 0px 0px 10px 0px;
+  animation: inset-glow-red 0.6s ease-in forwards;
+}
+
+.stopButton:hover .stop-icon {
+  fill: #f8fafc;
+}
+
+.sendButton:disabled {
+  background-color: var(--bg-light);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+/* Fade-in Animation */
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+
+.input-area {
+  display: flex;
+  flex-direction: column;
+  /* Stack textarea and buttons vertically */
+  gap: 5px;
+  /* Space between textarea and buttons */
 }
