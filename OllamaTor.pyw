@@ -85,6 +85,10 @@ model_cache = []
 cache_timestamp = 0
 CACHE_DURATION = 1
 
+# --- Stop Generation Variables ---
+stop_flag = False
+generation_thread = None
+
 
 # get the available models from the local AI server
 @eel.expose
@@ -135,6 +139,7 @@ def calculate_tps(data, tps_type="generation"):
 
 # generate resonse - using a thread for better performance
 def generate_response_thread(model, messages, temperature):
+    global stop_flag
     url = "http://localhost:11434/api/chat"
     payload = {
         "model": model,
@@ -148,6 +153,12 @@ def generate_response_thread(model, messages, temperature):
         with requests.post(url, json=payload, stream=True, timeout=60) as r:
             r.raise_for_status()
             for line in r.iter_lines(decode_unicode=True):
+                if stop_flag:  # Check the stop flag
+                    logging.info("Generation stopped by user.")
+                    eel.update_chat_message(
+                        full_response + "\n\n **Generation Stopped**"
+                    )()
+                    break  # Exit the loop
                 if line:
                     try:
                         part = json.loads(line)
@@ -167,18 +178,21 @@ def generate_response_thread(model, messages, temperature):
                     if part.get("done"):
                         tps = calculate_tps(part, tps_type="generation")
                         eel.update_tps(f"{tps:.2f} TPS")()
-
-            eel.appendMessage("assistant", full_response)()
+                        # Don't append here.  Append only if *not* stopped.
+            if not stop_flag:  # Only append if it wasn't stopped.
+                eel.appendMessage("assistant", full_response)()
 
     except Exception as e:
         logging.error("Error in generate_response_thread(): %s", e)
         eel.update_chat_message("❌ Error while generating response.")()
+    finally:
+        stop_flag = False  # Reset the flag when generation is complete (or stopped)
 
 
 # send the prompt to the AI server
 @eel.expose
 def generate_response(model, prompt, temperature, historyLength):
-    global message_history
+    global message_history, stop_flag, generation_thread
     logging.info(
         "generate_response() running - Model: %s, Prompt: %s, Temperature: %s, History-Length: %s",
         model,
@@ -197,14 +211,25 @@ def generate_response(model, prompt, temperature, historyLength):
     else:
         messages_to_send = message_history
 
-    thread = threading.Thread(
+    stop_flag = False  # Reset stop flag at the beginning of generation
+    generation_thread = threading.Thread(
         target=generate_response_thread,
         args=(model, messages_to_send, temperature),
         daemon=True,
     )
-    thread.start()
+    generation_thread.start()
 
     return {"value": "OK"}
+
+
+# --- Stop Generation Function ---
+@eel.expose
+def stop_generation():
+    global stop_flag, generation_thread
+    logging.info("Stop generation requested.")
+    stop_flag = True
+    if generation_thread and generation_thread.is_alive():
+        pass
 
 
 # download the OllamaSetup.exe
