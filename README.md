@@ -4,14 +4,6 @@ Chat with AI, adjust settings, and monitor system usage.
 
 ![Screenshot of OllamaTor](screenshot.png)
 
-# Index
-* [Features](#features)
-* [Installation](#installation)
-* [Getting Started](#getting-started)
-* [Requirements](#requirements)
-* [Contributing](#contributing)
-
-
 ## Features
 
 *   **Easy Chat:** Select a model and start chatting immediately.
