@@ -20,7 +20,7 @@ Chat with AI, adjust settings, and monitor system usage.
 *   **Resource Monitoring:** Real-time CPU, RAM, and GPU (load + memory) usage monitor. + AI performance "TPM" (tokens-per-minute)
 
 **TO-DO:**
-* Stop Button to stop generating a response
+* ~~Stop Button to stop generating a response~~ -> Available in `v0.0.3`
 * fixing the math rendering (KaTeX)
 * Customizable Copilots (inital prompt for the AI to get a better understanding on what it's working on)
 
