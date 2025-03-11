@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="en">
 <head>
   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-  <!-- marked for formatting -->
   <script src="/js/marked.min.js"></script>
-  <!-- KaTeX(not working currently) CSS & JS -->
   <link rel="stylesheet" href="/css/katex.min.css">
   <script src="/js/katex.min.js"></script>
   <script src="/js/auto-render.min.js"></script>
@@ -18,19 +16,18 @@
 <body>
   <div id="app">
     <h1 id="logo"><img src="/img/OllamaTor.gif" alt="OllamaTor" width="125px" height="125px"></h1>
-    <!-- Dropdown for Model-selection -->
     <div class="select-n-settings">
       <div class="system-resources">
         <div class="tag-card" id="resource-tag">
           <span class="resource-item" id="cpu-data">CPU: <span class="value">--</span>%</span>
             <span class="separator"></span>
-              <span class="resource-item" id="ram-data">RAM: <span class="value">--</span>%</span>
-                <span class="separator"></span>
-              <span class="resource-item" id="gpu-data">GPU: <span class="value">-- &amp; --</span>%</span>
+            <span class="resource-item" id="ram-data">RAM: <span class="value">--</span>%</span>
             <span class="separator"></span>
+            <span class="resource-item" id="gpu-data">GPU: <span class="value">-- &amp; --</span>%</span>
+          <span class="separator"></span>
           <span class="resource-item" id="tps-data">AI: <span class="value">--</span></span>
         </div>
-      </div>      
+      </div>
       <div class="custom-select-container">
         <select id="modelSelect">
           <option value="">Choose model...</option>
@@ -64,13 +61,13 @@
         <div>
           <h2>Need Help?</h2>
             <p>If it's your first time here, get started with a quick tour:</p>
-              <button id="tourButton">
-                <span class="tour-icon">
-                  <img src="/img/lifebuoy.svg" alt="HELP" class="svg">
-                </span>
-                Start the tour
-              </button>
-            <hr>
+            <button id="tourButton">
+              <span class="tour-icon">
+                <img src="/img/lifebuoy.svg" alt="HELP" class="svg">
+              </span>
+              Start the tour
+            </button>
+          <hr>
             <p><mark class="primary">[</mark><b>1</b><mark class="primary">]</mark> First of, do you have Ollama installed?</p>
             <button id="downloadButton">
               <span class="download-icon">
@@ -79,7 +76,7 @@
               Download OllamaSetup
             </button>
             <p class="version-info"><small>OllamaTor depends on Ollama, who would've guessed?</small></p>
-            <hr>
+          <hr>
             <p><mark class="primary">[</mark><b>2</b><mark class="primary">]</mark> Do you have an AI model installed?</p>
             <p>To install any model:</p>
             <p><mark class="primary"><b>-</b></mark><small> Open PowerShell</small></p>
@@ -91,7 +88,7 @@
               </span>
               View available models
             </button>
-            <hr>
+          <hr>
             <p><mark class="primary">[</mark><b>💕</b><mark class="primary">]</mark> Support this Project:</p>
             <button id="supportButton">
               <span class="kofi-icon">
@@ -106,12 +103,24 @@
         </div>
       </div>
     </div>
-    <!-- Chatarea -->
     <div id="chatBox"></div>
-    <!-- Entryfield -->
-    <textarea id="chatInput" placeholder="Enter Prompt..."></textarea>
-    <button class="sendButton" onclick="sendChat()">Send ➤</button>
-    <p class="version-info">v0.0.2 | &copy; 2025 <a class="link" id="author">NiiV3AU↗</a></p>
+    <div class="input-area">
+      <textarea id="chatInput" placeholder="Enter Prompt..."></textarea>
+        <div class="button-container">
+          <button class="sendButton" onclick="sendChat()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#f8fafc" class="send-icon svg">
+              <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
+            </svg>
+          </button>
+          <button class="stopButton" onclick="stopChatMessage()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#e05263" class="stop-icon svg">
+              <path fill-rule="evenodd" d="M4.5 7.5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9Z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+        </div>
+    </div>
+
+    <p class="version-info">v0.0.3 | &copy; 2025 <a class="link" id="author">NiiV3AU↗</a></p>
   </div>
 
   <script>
@@ -129,33 +138,33 @@
       document.getElementById("downloadButton").innerText = "If OllamaSetup.exe didn't automatically start, click to start manually";
     }
     document.getElementById("modelsButton").addEventListener("click", function() {
-        open_link("https://ollama.com/models");
+      open_link("https://ollama.com/models");
     });
 
     document.getElementById("supportButton").addEventListener("click", function() {
-        open_link("https://ko-fi.com/niveau");
+      open_link("https://ko-fi.com/niveau");
     });
 
     document.getElementById("author").addEventListener("click", function() {
-        open_link("https://niveau.pages.dev");
+      open_link("https://niveau.pages.dev");
     });
 
     document.getElementById("ollama-com").addEventListener("click", function() {
-        open_link("https://ollama.com");
+      open_link("https://ollama.com");
     });
 
     document.getElementById("eel-repo").addEventListener("click", function() {
-        open_link("https://github.com/python-eel/Eel");
+      open_link("https://github.com/python-eel/Eel");
     });
 
     document.getElementById("python-org").addEventListener("click", function() {
-        open_link("https://python.org");
+      open_link("https://python.org");
     });
 
     eel.expose(open_link);
 
     function open_link(url) {
-        eel.open_new_tab(url);
+      eel.open_new_tab(url);
     }
     // Settings Button / Modal Logic
     const settingsButton = document.getElementById("settingsButton");
@@ -189,21 +198,25 @@
     const helpButton = document.getElementById("helpButton");
     const helpModal = document.getElementById("helpModal");
     const closeHModal = helpModal.querySelector(".close");
-    
+
     helpButton.addEventListener("click", function() {
-        helpModal.style.display = "block";
+      helpModal.style.display = "block";
     });
-    
+
     closeHModal.addEventListener("click", function() {
       closeModal(helpModal);
     });
-    
+
     window.addEventListener("click", function(event) {
       if (event.target === helpModal) {
         closeModal(helpModal);
       }
     });
-    
+  // --- Stop Button Logic (Enhanced) ---
+
+    function stopChatMessage() {
+        eel.stop_generation()();
+    }
 
     // Slider-Eventlistener
     function getTempTooltip(value) {
@@ -307,17 +320,19 @@
 
     const renderer = new marked.Renderer();
 
+
     renderer.code = function(code, infostring, escaped) {
-      const codeString = (typeof code === 'object' && code.text) ? code.text : code;
-      const language = infostring || (typeof code === 'object' && code.lang) || 'plaintext';
-    
-      return `<div class="code-card">
-                <div class="code-header">
-                  <span class="code-lang">${language}</span>
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                </div>
-                <pre><code class="language-${language}">${escapeHtml(codeString)}</code></pre>
-              </div>`;
+        const codeString = (typeof code === 'object' && code.text) ? code.text : code;
+        // Korrektur 1: Korrekte Sprachbehandlung
+        const language = (infostring || (typeof code === 'object' && code.lang) || 'plaintext').split(' ')[0]; // Nur den ersten Teil nehmen
+
+        return `<div class="code-card">
+                    <div class="code-header">
+                        <span class="code-lang">${language}</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code class="language-${language}">${escapeHtml(codeString)}</code></pre>
+                </div>`;
     };
 
     marked.use({ renderer });
@@ -334,7 +349,7 @@
           console.error("Failed to copy: ", err);
         });
       }
-    }
+}
 
     //splitting the message into thinking and answer
     function splitMessage(text) {
@@ -390,77 +405,77 @@
     let modelsLoaded = false;
 
     async function loadModels(forceReload = false) {
-        const select = document.getElementById("modelSelect");
-        const refreshIcon = document.querySelector(".refresh-icon");
-    
-        if (isLoadingModels) {
-            return;
+      const select = document.getElementById("modelSelect");
+      const refreshIcon = document.querySelector(".refresh-icon");
+
+      if (isLoadingModels) {
+        return;
+      }
+
+      if (!modelsLoaded || forceReload) {
+        isLoadingModels = true;
+        select.disabled = true;
+        refreshIcon.classList.add("loading");
+
+        if (select.options.length <= 1) {
+          const loadingOpt = document.createElement("option");
+          loadingOpt.value = "";
+          loadingOpt.textContent = "Loading models...";
+          loadingOpt.disabled = true;
+          select.appendChild(loadingOpt);
         }
-      
-        if (!modelsLoaded || forceReload) {
-            isLoadingModels = true;
-            select.disabled = true;
-            refreshIcon.classList.add("loading");
-        
-            if (select.options.length <= 1) {
-                const loadingOpt = document.createElement("option");
-                loadingOpt.value = "";
-                loadingOpt.textContent = "Loading models...";
-                loadingOpt.disabled = true;
-                select.appendChild(loadingOpt);
-            }
-          
-            try {
-                const models = await eel.get_available_models_cached()();
-                const loadingOpt = select.querySelector("option[value=''][disabled]");
-                if (loadingOpt) {
-                    select.removeChild(loadingOpt);
-                }
-              
-                const selectedModel = select.value;
-              
-                while (select.options.length > 1) {
-                    select.remove(1);
-                }
-              
-                if (models.length === 0) {
-                    const noModelsOpt = document.createElement("option");
-                    noModelsOpt.value = "";
-                    noModelsOpt.textContent = "No models available";
-                    noModelsOpt.disabled = true;
-                    select.appendChild(noModelsOpt);
-                } else {
-                    models.forEach(model => {
-                        const opt = document.createElement("option");
-                        opt.value = model;
-                        opt.textContent = model;
-                        select.appendChild(opt);
-                    
-                        if (model === selectedModel) {
-                            opt.selected = true;
-                        }
-                    });
-                }
-                modelsLoaded = true;
-            } catch (error) {
-                console.error("Error loading models:", error);
-                const errorOpt = document.createElement("option");
-                errorOpt.value = "";
-                errorOpt.textContent = "Error loading models";
-                errorOpt.disabled = true;
-                select.appendChild(errorOpt);
-            
-            } finally {
-                isLoadingModels = false;
-                select.disabled = false;
-                refreshIcon.classList.remove("loading");
-            }
+
+        try {
+          const models = await eel.get_available_models_cached()();
+          const loadingOpt = select.querySelector("option[value=''][disabled]");
+          if (loadingOpt) {
+            select.removeChild(loadingOpt);
+          }
+
+          const selectedModel = select.value;
+
+          while (select.options.length > 1) {
+            select.remove(1);
+          }
+
+          if (models.length === 0) {
+            const noModelsOpt = document.createElement("option");
+            noModelsOpt.value = "";
+            noModelsOpt.textContent = "No models available";
+            noModelsOpt.disabled = true;
+            select.appendChild(noModelsOpt);
+          } else {
+            models.forEach(model => {
+              const opt = document.createElement("option");
+              opt.value = model;
+              opt.textContent = model;
+              select.appendChild(opt);
+
+              if (model === selectedModel) {
+                opt.selected = true;
+              }
+            });
+          }
+          modelsLoaded = true;
+        } catch (error) {
+          console.error("Error loading models:", error);
+          const errorOpt = document.createElement("option");
+          errorOpt.value = "";
+          errorOpt.textContent = "Error loading models";
+          errorOpt.disabled = true;
+          select.appendChild(errorOpt);
+
+        } finally {
+          isLoadingModels = false;
+          select.disabled = false;
+          refreshIcon.classList.remove("loading");
         }
+      }
     }
 
 
     document.getElementById("modelSelect").addEventListener("mousedown", () => {
-        loadModels();
+      loadModels();
     });
 
 
@@ -507,17 +522,17 @@
       message = escapeHtml(message);
       const model = document.getElementById("modelSelect").value;
       if (!model) {
-          modelSelect.classList.add('error-border');
-          hasError = true;
+        modelSelect.classList.add('error-border');
+        hasError = true;
       }
       if (hasError) {
         setTimeout(() => {
           if(chatInput.classList.contains('error-border')){
               chatInput.classList.remove('error-border');
-            }
-          if(modelSelect.classList.contains('error-border')){
+          }
+        if(modelSelect.classList.contains('error-border')){
               modelSelect.classList.remove('error-border');
-            }
+          }
         }, 500);
         return;
       }
@@ -541,7 +556,7 @@
       eel.generate_response(model, message, temperature, historyLength);
     }
 
-    //Dynamicly update chat message 
+    //Dynamically update chat message
     let streamTimer = null;
     eel.expose(update_chat_message);
     function update_chat_message(text) {
@@ -612,96 +627,103 @@
         const intro = introJs();
         intro.setOptions({
           steps: [
-                  {
-                    intro: "Welcome to OllamaTor! This Tour will lead you through all the important stuff.",
-                    position: 'auto'
-                  },
-                  {
-                    element: document.getElementById('logo'),
-                    intro: "Here you can see the precious OllamaTor Logo. And no, OllamaTor has nothing to do with the Tor-Browser, the german word 'Tor' translates to 'gate'. I thought it would be a fitting name for an application that opens the 'gate' to your local AI models.",
-                    position: 'auto'
-                  },
-                  {
-                    element: document.getElementById('resource-tag'),
-                    intro: "CPU, RAM, GPU usage right here. Even the TPS (Tokens per second) of the AI will be displayed here after every finished response.",
-                    position: 'auto'
-                  },
-                  {
-                    element: document.querySelector('.custom-select-container'),
-                    intro: "Here you can choose your AI model you want to chat with.",
-                    position: 'auto'
-                  },
-                  {
-                    element: document.getElementById('refreshButton'),
-                    intro: "Click this button to refresh the list of available AI models.",
-                    position: 'auto'
-                  },                  
-                  {
-                    element: document.getElementById('settingsButton'),
-                    intro: "Enter the advanced settings to tweak your AI with temperature and chat history length.",
-                    position: 'auto'
-                  },
-                  {
-                    element: document.getElementById('helpButton'),
-                    intro: "Here you can download Ollama (if not already installed) and the AI models, also you can find more infos about OllamaTor.",
-                    position: 'auto'
-                  },
-                  {
-                    element: document.getElementById('chatBox'),
-                    intro: "This frame displays the chat messages from you and the AI.",
-                    position: 'auto'
-                  },
-                  {
-                    element: document.getElementById('chatInput'),
-                    intro: "Enter your prompt here to start chatting with an AI.",
-                    position: 'auto'
-                  },
-                  {
-                    element: document.querySelector('.sendButton'),
-                    intro: "Just click here to send your prompt.",
-                    position: 'auto'
-                  },
-                  {
-                    intro: "That's all! Thanks for choosing OllamaTor and have fun while chatting.",
-                    position: "auto"
-                  }
-                ],
-                showProgress: true,
-                showBullets: false,
-                disableInteraction: false,
-                prevLabel: 'Back',
-                nextLabel: 'Next',
-                doneLabel: 'Finish'
-            });
-          
-          intro.start();
-        }
-      document.getElementById("refreshButton").addEventListener("click", () => {
-          loadModels(true); //force reload
-      });
+              {
+                intro: "Welcome to OllamaTor! This Tour will lead you through all the important stuff.",
+                position: 'auto'
+              },
+              {
+                element: document.getElementById('logo'),
+                intro: "Here you can see the precious OllamaTor Logo. And no, OllamaTor has nothing to do with the Tor-Browser, the german word 'Tor' translates to 'gate'. I thought it would be a fitting name for an application that opens the 'gate' to your local AI models.",
+                position: 'auto'
+              },
+              {
+                element: document.getElementById('resource-tag'),
+                intro: "CPU, RAM, GPU usage right here. Even the TPS (Tokens per second) of the AI will be displayed here after every finished response.",
+                position: 'auto'
+              },
+              {
+                element: document.querySelector('.custom-select-container'),
+                intro: "Here you can choose your AI model you want to chat with.",
+                position: 'auto'
+              },
+              {
+                element: document.getElementById('refreshButton'),
+                intro: "Click this button to refresh the list of available AI models.",
+                position: 'auto'
+              },
+              {
+                element: document.getElementById('settingsButton'),
+                intro: "Enter the advanced settings to tweak your AI with temperature and chat history length.",
+                position: 'auto'
+              },
+              {
+                element: document.getElementById('helpButton'),
+                intro: "Here you can download Ollama (if not already installed) and the AI models, also you can find more infos about OllamaTor.",
+                position: 'auto'
+              },
+              {
+                element: document.getElementById('chatBox'),
+                intro: "This frame displays the chat messages from you and the AI.",
+                position: 'auto'
+              },
+              {
+                element: document.getElementById('chatInput'),
+                intro: "Enter your prompt here to start chatting with an AI.",
+                position: 'auto'
+              },
+              {
+                element: document.querySelector('.sendButton'),
+                intro: "Just click here to send your prompt.",
+                position: 'auto'
+              },
+              {
+                intro: "That's all! Thanks for choosing OllamaTor and have fun while chatting.",
+                position: "auto"
+              }
+            ],
+            showProgress: true,
+            showBullets: false,
+            disableInteraction: false,
+            prevLabel: 'Back',
+            nextLabel: 'Next',
+            doneLabel: 'Finish'
+        });
+
+        intro.start();
+      }
+    document.getElementById("refreshButton").addEventListener("click", () => {
+      loadModels(true); //force reload
+    });
     eel.expose(update_system_resources);
     function update_system_resources(resources) {
-        const tagCard = document.getElementById('resource-tag');
+      const tagCard = document.getElementById('resource-tag');
 
-        document.querySelector('#cpu-data .value').textContent = resources.cpu.toFixed(1);
-        document.querySelector('#ram-data .value').textContent = resources.ram.toFixed(1);
+      document.querySelector('#cpu-data .value').textContent = resources.cpu.toFixed(1);
+      document.querySelector('#ram-data .value').textContent = resources.ram.toFixed(1);
 
-        let gpuText = "-- & --";
-        if (resources.gpu.length > 0) {
-            const gpu = resources.gpu[0];
-            gpuText = `${gpu.load.toFixed(1)} & ${gpu.memoryUtil.toFixed(1)}`;
-        }
-        document.querySelector('#gpu-data .value').textContent = gpuText;
+      let gpuText = "-- & --";
+      if (resources.gpu.length > 0) {
+        const gpu = resources.gpu[0];
+        gpuText = `${gpu.load.toFixed(1)} & ${gpu.memoryUtil.toFixed(1)}`;
+      }
+      document.querySelector('#gpu-data .value').textContent = gpuText;
 
-        tagCard.classList.add('text-animation');
-        setTimeout(() => {
-            tagCard.classList.remove('text-animation');
-        }, 600);
+      tagCard.classList.add('text-animation');
+      setTimeout(() => {
+        tagCard.classList.remove('text-animation');
+      }, 600);
     }
     eel.expose(update_tps);
     function update_tps(tps) {
-        document.querySelector('#tps-data .value').textContent = tps;
+      document.querySelector('#tps-data .value').textContent = tps;
     }
+      // Add event listener for Enter key in chatInput
+    document.getElementById("chatInput").addEventListener("keydown", function(event) {
+        if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault(); // Prevent newline in textarea
+            sendChat();
+        }
+    });
   </script>
 </body>
 </html>
